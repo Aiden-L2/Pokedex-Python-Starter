@@ -3,7 +3,7 @@ import json
 pokedex = open("./pokedex.json", encoding="utf8")
 ## create variable "data" that represents the enitre pokedex list
 data = json.load(pokedex)
-
+print(data[0])
 
 # Create a function that will take the data from the JSON file and you will iterate through the list of pokemon and print each pokemons name.
 
@@ -19,11 +19,16 @@ data = json.load(pokedex)
 def pokemon():
     print("Which lanuage will you choose?")
     print("Lanuage: 1. English 2. Chinese 3. French 4. Japanese")
-    language = input("enter your choice: ")
+    languages = input("enter your choice: ").strip
 
-    if language == ("English") or ("Chinese") or ("French") or ("Japanese"):
-        print("Choosing", language)
+    language = {
+        "1": "English",
+        "2": "Chinese",
+        "3": "Japanese",
+        "4": "French"
+    }
 
+    language = language.get(languages)
 
 
 pokemon()
