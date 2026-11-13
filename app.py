@@ -18,17 +18,55 @@ print(data[0])
 
 def pokemon():
     print("Which lanuage will you choose?")
-    print("Lanuage: 1. English 2. Chinese 3. French 4. Japanese")
-    languages = input("enter your choice: ").strip
+    print("Lanuage: 1. English 2. Chinese 3. Japanese 4. French")
+    choice = input("enter your choice: ").strip()
 
     language = {
-        "1": "English",
-        "2": "Chinese",
-        "3": "Japanese",
-        "4": "French"
+        "1": "english",
+        "2": "chinese",
+        "3": "japanese",
+        "4": "french"
     }
 
-    language = language.get(languages)
+    language = language.get(choice, "English")
 
+    print(f"You chose {language}.")
+    if language == "english":
+        pokemon_name = input("Which pokemon are you looking for?").strip()
+    if language == "chinese":
+        pokemon_name = input("你在找哪只宝可梦").strip()
+    if language == "japanese":
+        pokemon_name = input("どのポケモンを探してるの？").strip()
+    if language == "French":
+        pokemon_name = input("Tu cherches quel Pokémon?").strip()
+
+    matches = []
+    for pokemon in data:
+        if not isinstance(pokemon, dict):
+            continue
+        names = pokemon.get("name", {})
+
+        if language == "english":
+            name = names.get("english", "")
+        elif language == "chinese":
+            name = names.get("chinese", "")
+        elif language == "japanese":
+            name = names.get("japanese", "")
+        elif language == "french":
+            name = names.get("french", "")
+        else:
+            continue
+
+        if name.lower().startswith(pokemon_name.lower()):
+            matches.append(name)
+
+    if matches:
+        print("matches found")
+        for name in matches:
+            print(name)
+    else:
+        print(f"no pkemon found matching '{pokemon_name}'.")
+
+    print("enter to continue ")
 
 pokemon()
