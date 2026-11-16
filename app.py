@@ -31,6 +31,7 @@ def pokemon():
     language = language.get(choice, "English")
 
     print(f"You chose {language}.")
+    
     if language == "english":
         pokemon_name = input("Which pokemon are you looking for?").strip()
     if language == "chinese":
@@ -64,9 +65,13 @@ def pokemon():
         print("matches found")
         for name in matches:
             print(name)
+        pick = input("Which pokemon were you looking for: ")
+        for item in data:
+            if pick in item[1]:
+                print(item)
+            
     else:
         print(f"no pkemon found matching '{pokemon_name}'.")
-
-    print("enter to continue ")
+        print("enter to continue ")
 
 pokemon()
