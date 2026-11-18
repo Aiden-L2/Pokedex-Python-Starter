@@ -16,6 +16,25 @@ print(data[0])
 
 #Based on user input, show all moves that a pokemon could learn based on their type. For example, if Charizard is fire/fyling, show all fire and flying moves. HINT import the moves.json file too!
 
+def get_choice_from_list(options):
+
+    for i, item in enumerate(options, start=1):
+        print(f"{i}. {item}")
+
+    while True:
+        user_input = input("Enter the pokemon you were looking for: ").strip()
+
+        if user_input == 0:
+            print("try again")
+        else:
+            matches = [item for item in options if item.lower() == user_input.lower()]
+            if matches:
+                return matches[0]
+            else:
+                print("Invalid. Try again.")
+
+
+
 def pokemon():
     print("Which lanuage will you choose?")
     print("Lanuage: 1. English 2. Chinese 3. Japanese 4. French")
@@ -33,8 +52,6 @@ def pokemon():
     print(f"You chose {language}.")
 
 
-def pickpokemon():
-    
     if language == "english":
         pokemon_name = input("Which pokemon are you looking for?:").strip()
     if language == "chinese":
@@ -66,11 +83,14 @@ def pickpokemon():
         if name.lower().startswith(pokemon_name.lower()):
             matches.append(name)
 
+
+
     if matches:
         print("matches found")
         for name in matches:
             print(name)
-        pick = input("Which pokemon were you looking for: ")
+        choice = get_choice_from_list(matches)
+        print(f"You selected: {choice}")
 
     else:
         print(f"no pkemon found matching '{pokemon_name}'.")
