@@ -31,17 +31,22 @@ def pokemon():
     language = language.get(choice, "English")
 
     print(f"You chose {language}.")
+
+
+def pickpokemon():
     
     if language == "english":
-        pokemon_name = input("Which pokemon are you looking for?").strip()
+        pokemon_name = input("Which pokemon are you looking for?:").strip()
     if language == "chinese":
-        pokemon_name = input("你在找哪只宝可梦").strip()
+        pokemon_name = input("你在找哪只宝可梦:").strip()
     if language == "japanese":
-        pokemon_name = input("どのポケモンを探してるの？").strip()
+        pokemon_name = input("どのポケモンを探してるの？:").strip()
     if language == "French":
-        pokemon_name = input("Tu cherches quel Pokémon?").strip()
+        pokemon_name = input("Tu cherches quel Pokémon?:").strip()
+    
 
     matches = []
+
     for pokemon in data:
         if not isinstance(pokemon, dict):
             continue
@@ -66,10 +71,7 @@ def pokemon():
         for name in matches:
             print(name)
         pick = input("Which pokemon were you looking for: ")
-        for item in data:
-            if pick in item[1]:
-                print(item)
-            
+
     else:
         print(f"no pkemon found matching '{pokemon_name}'.")
         print("enter to continue ")
