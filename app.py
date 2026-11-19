@@ -3,7 +3,7 @@ import json
 pokedex = open("./pokedex.json", encoding="utf8")
 ## create variable "data" that represents the enitre pokedex list
 data = json.load(pokedex)
-print(data[0])
+#print(data[0])
 
 # Create a function that will take the data from the JSON file and you will iterate through the list of pokemon and print each pokemons name.
 
@@ -16,10 +16,7 @@ print(data[0])
 
 #Based on user input, show all moves that a pokemon could learn based on their type. For example, if Charizard is fire/fyling, show all fire and flying moves. HINT import the moves.json file too!
 
-def get_choice_from_list(options):
-
-    for i, item in enumerate(options, start=1):
-        print(f"{i}. {item}")
+def list(z):
 
     while True:
         user_input = input("Enter the pokemon you were looking for: ").strip()
@@ -27,7 +24,7 @@ def get_choice_from_list(options):
         if user_input == 0:
             print("try again")
         else:
-            matches = [item for item in options if item.lower() == user_input.lower()]
+            matches = [item for item in z if item.lower() == user_input.lower()]
             if matches:
                 return matches[0]
             else:
@@ -51,18 +48,18 @@ def pokemon():
 
     print(f"You chose {language}.")
 
+    for item in data:
+        pokemon=item["name"]
+        print(pokemon[language])
+        
+pokemon()
 
-    if language == "english":
-        pokemon_name = input("Which pokemon are you looking for?:").strip()
-    if language == "chinese":
-        pokemon_name = input("你在找哪只宝可梦:").strip()
-    if language == "japanese":
-        pokemon_name = input("どのポケモンを探してるの？:").strip()
-    if language == "French":
-        pokemon_name = input("Tu cherches quel Pokémon?:").strip()
     
+def type():
 
     matches = []
+
+    finding = input("what pokemon are you looking for: ")
 
     for pokemon in data:
         if not isinstance(pokemon, dict):
@@ -80,7 +77,8 @@ def pokemon():
         else:
             continue
 
-        if name.lower().startswith(pokemon_name.lower()):
+
+        if name.lower().startswith(finding.lower()):
             matches.append(name)
 
 
@@ -89,11 +87,30 @@ def pokemon():
         print("matches found")
         for name in matches:
             print(name)
-        choice = get_choice_from_list(matches)
-        print(f"You selected: {choice}")
+        choice = list(matches)
+        print(f"Pokemon choosen: {choice}")
 
     else:
-        print(f"no pkemon found matching '{pokemon_name}'.")
+        print(f"no pkemon found matching '{finding}'.")
         print("enter to continue ")
 
-pokemon()
+type()
+
+
+
+
+
+
+
+
+
+"""         if pokemon == "english":
+            name = names.get("english", "")
+        elif pokemon == "chinese":
+            name = names.get("chinese", "")
+        elif pokemon == "japanese":
+            name = names.get("japanese", "")
+        elif pokemon == "french":
+            name = names.get("french", "")
+        else:
+            continue """
