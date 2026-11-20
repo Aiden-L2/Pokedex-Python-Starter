@@ -33,6 +33,8 @@ def list(z):
 
 
 def pokemon():
+    global language
+
     print("Which lanuage will you choose?")
     print("Lanuage: 1. English 2. Chinese 3. Japanese 4. French")
     choice = input("enter your choice: ").strip()
@@ -51,11 +53,12 @@ def pokemon():
     for item in data:
         pokemon=item["name"]
         print(pokemon[language])
-        
+    
 pokemon()
 
     
-def type():
+def find():
+    global choice
 
     matches = []
 
@@ -92,9 +95,17 @@ def type():
 
     else:
         print(f"no pkemon found matching '{finding}'.")
-        print("enter to continue ")
+        print("restart")
 
-type()
+find()
+
+def tp():
+
+    if choice == 1:
+        print(" ")
+    else: 
+        
+
 
 
 
