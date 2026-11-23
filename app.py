@@ -84,6 +84,11 @@ def find():
         if name.lower().startswith(finding.lower()):
             matches.append(name)
 
+    for i in range(len(data)):
+        if finding.capitalize() in data[i]["type"]:
+            matches.append(data[i]["name"][language])
+    if len(matches) == 0:
+        print(f"pokemon type {finding} gone")
 
 
     if matches:
@@ -104,7 +109,7 @@ def tp():
     if choice == 1:
         print(" ")
     else: 
-        
+        choice[1]
 
 
 
