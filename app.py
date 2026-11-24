@@ -3,6 +3,8 @@ import json
 pokedex = open("./pokedex.json", encoding="utf8")
 ## create variable "data" that represents the enitre pokedex list
 data = json.load(pokedex)
+move_file = open("./moves.json", encoding="utf8")
+move = json.load(move_file)
 #print(data[0])
 
 # Create a function that will take the data from the JSON file and you will iterate through the list of pokemon and print each pokemons name.
@@ -58,11 +60,26 @@ pokemon()
 
     
 def find():
-    global choice
+    global finding
+    global matches
 
     matches = []
 
     finding = input("what pokemon are you looking for: ")
+
+
+
+    for i in range(len(data)):
+        if finding.capitalize() in data[i]["type"]:
+            matches.append(data[i]["name"][language])
+
+
+
+
+find()
+
+def tp():
+    global choice
 
     for pokemon in data:
         if not isinstance(pokemon, dict):
@@ -84,13 +101,6 @@ def find():
         if name.lower().startswith(finding.lower()):
             matches.append(name)
 
-    for i in range(len(data)):
-        if finding.capitalize() in data[i]["type"]:
-            matches.append(data[i]["name"][language])
-    if len(matches) == 0:
-        print(f"pokemon type {finding} gone")
-
-
     if matches:
         print("matches found")
         for name in matches:
@@ -101,32 +111,19 @@ def find():
     else:
         print(f"no pkemon found matching '{finding}'.")
         print("restart")
+tp()
 
-find()
-
-def tp():
-
-    if choice == 1:
-        print(" ")
-    else: 
-        choice[1]
-
-
-
-
-
-
+def mov():
+    name = input("choose: ")
+    for i in range(len(data)):
+        if finding in data[i]["name"][language]:
+            type = data[i]["type"]            
+            for t in type:
+                for i in range(len(move)):
+                    if t == move[i]["type"]:
+                        print(move[i]["ename"])
+mov()
+          
 
 
 
-
-"""         if pokemon == "english":
-            name = names.get("english", "")
-        elif pokemon == "chinese":
-            name = names.get("chinese", "")
-        elif pokemon == "japanese":
-            name = names.get("japanese", "")
-        elif pokemon == "french":
-            name = names.get("french", "")
-        else:
-            continue """
