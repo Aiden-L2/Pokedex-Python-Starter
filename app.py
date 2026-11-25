@@ -4,7 +4,7 @@ pokedex = open("./pokedex.json", encoding="utf8")
 ## create variable "data" that represents the enitre pokedex list
 data = json.load(pokedex)
 move_file = open("./moves.json", encoding="utf8")
-move = json.load(move_file)
+moves = json.load(move_file)
 #print(data[0])
 
 # Create a function that will take the data from the JSON file and you will iterate through the list of pokemon and print each pokemons name.
@@ -22,7 +22,7 @@ def list(z):
 
     while True:
         user_input = input("Enter the pokemon you were looking for: ").strip()
-
+        
         if user_input == 0:
             print("try again")
         else:
@@ -80,6 +80,7 @@ find()
 
 def tp():
     global choice
+    global finding
 
     for pokemon in data:
         if not isinstance(pokemon, dict):
@@ -108,20 +109,26 @@ def tp():
         choice = list(matches)
         print(f"Pokemon choosen: {choice}")
 
+
     else:
         print(f"no pkemon found matching '{finding}'.")
         print("restart")
 tp()
 
 def mov():
-    name = input("choose: ")
-    for i in range(len(data)):
-        if finding in data[i]["name"][language]:
-            type = data[i]["type"]            
-            for t in type:
-                for i in range(len(move)):
-                    if t == move[i]["type"]:
-                        print(move[i]["ename"])
+
+    for penguin in range(len(data)):
+
+        if choice in data[penguin]["name"][language]:
+            type = data[penguin]["type"]           
+
+            for s in type:
+
+                for penguin in range(len(moves)):
+
+                    if s == moves[penguin]["type"]:
+                        
+                        print(moves[penguin]["ename"])
 mov()
           
 
